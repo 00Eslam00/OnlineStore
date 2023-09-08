@@ -1,0 +1,53 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using OnlineStore.Areas.Identity.Data
+@using OnlineStore.Data.Enums;
+
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+
+
+<ul class="navbar-nav ml-auto">
+   
+    @if (SignInManager.IsSignedIn(User))
+    {
+        ViewBag.UserId = UserManager.GetUserId(User);
+        foreach (var user in UserManager.Users)
+        {
+            if (user.Id == ViewBag.UserId)
+            {
+                ViewBag.Name = user.FirstName;
+                ViewBag.Type = user.UserType;
+            }
+        }
+        <li class="nav-item">
+            <a class="nav-link" asp-controller="Cart" asp-action="Index" title="Cart">Cart</a>
+        </li>
+        @if (ViewBag.Type == UserType.Seller)
+        {
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="User" asp-action="ManageProduct" asp-route-Id="@ViewBag.UserId" title="My Products">My Products</a>
+            </li>
+        }
+
+        <li class="nav-item">
+            <a class="nav-link" asp-action="Index" asp-controller="Product" title="Products">Products</a>
+        </li>
+        <li class="nav-item">
+            <a id="manage" class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@ViewBag.Name</a>
+        </li>
+        <li class="nav-item">
+            <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Product", new { area = "" })">
+                <button id="logout" type="submit" class="nav-link btn btn-link border-0">Logout</button>
+            </form>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link" href="/identity/account/login">Login</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/identity/account/register">Sign up</a>
+        </li>
+    }
+</ul>

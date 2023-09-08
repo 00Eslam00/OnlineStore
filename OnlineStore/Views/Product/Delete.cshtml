@@ -1,0 +1,31 @@
+﻿@model Product
+@using OnlineStore.Data.Enums;
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+<form method="post" asp-action="Delete" asp-controller="Product" asp-route-Id="@Model.Id">
+    <partial name="_DetailsPartial" model="Model" view-data="ViewData" />
+    <div class="col-lg-12">
+        <h6>Quantity Available : @Model.Quantity</h6>
+    </div>
+    <div class="col-lg-12 mt-3">
+        <div class="row">
+            <div class="col-lg-6 pb-2">
+                <input type="submit" value="Delete" class="btn btn-danger w-100" />
+            </div>
+            <div class="col-lg-6">
+
+                <a asp-action="ManageProduct" asp-controller="User" asp-route-Id="@ViewBag.Id" class="btn btn-success w-20">Back To My Products</a>
+
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+</form>

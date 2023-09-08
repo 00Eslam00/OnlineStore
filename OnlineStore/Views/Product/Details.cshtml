@@ -1,0 +1,37 @@
+﻿@model Product
+@using OnlineStore.Data.Enums;
+@{
+    ViewData["Title"] = "Details";
+}
+<form method="post" asp-controller="Cart" asp-action="Add" asp-route-Id="@Model.Id" asp-route-SellerId="@Model.SellerId">
+    <partial name="_DetailsPartial" model="Model" view-data="ViewData" />
+    <div class="col-lg-12">
+        <h6>Quantity Available : @Model.Quantity</h6>
+        @if (ViewBag.Id != Model.SellerId)
+        {
+            <label class="form-label">Required Quantity: </label>
+            <input type="number" name="RequiredQuantity" class="form-control text-center w-100" value="1" min="1" max="@Model.Quantity">
+        }
+    </div>
+    <div class="col-lg-12 mt-3">
+        @if (ViewBag.Id == null)
+        {
+            <a href="/identity/account/login" class="btn btn-danger w-100">Add to Cart</a>
+        }
+        else
+        {
+            @if (Model.Quantity > 0 && ViewBag.Id != Model.SellerId)
+            {
+                <div class="row">
+                    <button type="submit" class="btn btn-danger w-100">Add To Cart</button>
+                </div>
+            }
+        }
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+</form>

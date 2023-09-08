@@ -1,0 +1,12 @@
+﻿@{
+    ViewData["Title"] = "Cancel";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h1>Order Cancelled and Products were removed</h1>
+    @* Display a message indicating that the order was canceled and products were removed *@
+    <div class="alert alert-success">
+        Your order has been successfully canceled, and the products have been removed from your cart. <a asp-action="Index" asp-controller="Product" asp-route-Id="" class="alert-link">Back to Products</a>
+    </div>
+</div>

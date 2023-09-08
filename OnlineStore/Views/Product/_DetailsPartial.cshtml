@@ -1,0 +1,50 @@
+﻿@model Product
+@using OnlineStore.Data.Enums;
+
+<div class="container">
+    <div class="col-lg-8 border p-3 main-section bg-white">
+        <div class="row m-0">
+            <div class="col-lg-4 left-side-product-box pb-3">
+                @{
+                    string? imgsrc = null;
+                    if (Model.Image != null)
+                    {
+                        string base64String = Convert.ToBase64String(@Model?.Image);
+                        imgsrc = $"data:image/jpeg;base64,{base64String}";
+                        <img class="border p-3" width="300" height="416" src=@imgsrc alt="@Model.Name">
+                    }
+                    else
+                    {
+                        <img class="border p-3" width="300" height="416" src="/Images/images.png" alt="@Model.Name">
+                    }
+                }
+            </div>
+            <div class="col-lg-8">
+                <div class="right-side-pro-detail border p-3 m-0">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <span>@Model.Category</span>
+                            <p class="m-0 p-0">@Model.Name</p>
+                        </div>
+                        <div class="col-lg-12">
+                            @if (Model.Discount > 0)
+                            {
+                                double newPrice = Model.UnitPrice - (Model.UnitPrice * (Model.Discount * 1.0 / 100));
+                                <p class="m-0 p-0 price-pro">$@newPrice</p>
+                            }
+                            else
+                            {
+                                <p class="m-0 p-0 price-pro">$@Model.UnitPrice</p>
+                            }
+                            <hr class="p-0 m-0">
+                        </div>
+                        <div class="col-lg-12 pt-2">
+                            <h5>Product Detail</h5>
+                            <span>@Model.Description</span>
+                            <hr class="m-0 pt-2 mt-2">
+                        </div>
+                        <div class="col-lg-12">
+                            <p class="tag-section"><strong>Seller : </strong><a asp-action="SellerProducts" asp-route-Id="@ViewBag.SellerId">@ViewBag.FirstName @ViewBag.LastName</a></p>
+                        </div>
+                        
+                        

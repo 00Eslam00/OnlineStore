@@ -1,0 +1,12 @@
+﻿@{
+    ViewData["Title"] = "EmptyCart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h1>Empty Cart</h1>
+    @* Display an empty cart message in a suitable form for the user *@
+    <div class="alert alert-info">
+        Your cart is currently empty. <a asp-action="Index" asp-controller="Product" asp-route-Id="" class="alert-link">Back to Products</a>
+    </div>
+</div>

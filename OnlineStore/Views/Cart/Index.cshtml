@@ -1,0 +1,45 @@
+﻿@model Dictionary<KeyValuePair<string,string>, KeyValuePair<int, double>>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h1>Items Added to Cart by: @ViewBag.FirstName @ViewBag.LastName</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Price</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Key.Key</td>
+                    <td>@item.Value.Key</td>
+                    <td>@item.Value.Value</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="row">
+        <div class="col-6">
+            <p>Total Price: @ViewBag.Sum</p>
+        </div>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col-6">
+            <a asp-action="confirm" asp-controller="cart" class="btn btn-success w-100" asp-route-Id="@ViewBag.Id">Confirm Order</a>
+        </div>
+        <div class="col-6">
+            <a asp-action="cancel" asp-controller="cart" class="btn btn-danger w-100" asp-route-Id="@ViewBag.Id">Cancel Order</a>
+        </div>
+    </div>
+</div>

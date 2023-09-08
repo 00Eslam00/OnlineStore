@@ -1,0 +1,17 @@
+﻿@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h1>Product Added to Cart Successfully</h1>
+
+    <div class="row">
+        <div class="col-md-6 mb-2">
+            <a asp-action="Index" asp-controller="Product" asp-route-Id="" class="btn btn-success w-100">Back To Products</a>
+        </div>
+        <div class="col-md-6 mb-2">
+            <a asp-action="Index" asp-controller="Cart" asp-route-Id="" class="btn btn-info w-100">See Cart</a>
+        </div>
+    </div>
+</div>

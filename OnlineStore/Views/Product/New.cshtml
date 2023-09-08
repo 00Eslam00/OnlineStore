@@ -1,0 +1,28 @@
+﻿@model Product
+@{
+    ViewData["Title"] = "New";
+
+}
+
+<h1>New</h1>
+<form method="post" enctype="multipart/form-data" asp-action="New" asp-controller="product">
+    <partial name="_FormPartial" model="Model" view-data="ViewData" />
+
+    <div class="mb-3">
+       
+        <div class="custom-file">
+            <label class="custom-file-label" for="customFile">Choose Image</label>
+            <input type="file" name="Imagefile" class="custom-file-input" id="customFile" />
+        </div>
+    </div>
+
+
+    <br />
+    <button type="submit" class="btn btn-outline-primary">Submit</button>
+</form>
+@section scripts{
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

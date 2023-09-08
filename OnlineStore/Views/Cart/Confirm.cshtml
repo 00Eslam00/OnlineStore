@@ -1,0 +1,12 @@
+﻿@{
+    ViewData["Title"] = "Confirm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h1>Order Completed Successfully</h1>
+    @* Display a message indicating that the order was completed successfully *@
+    <div class="alert alert-success">
+        Your order has been completed successfully. Thank you for shopping with us! <a asp-action="Index" asp-controller="Product" asp-route-Id="" class="alert-link">Back to Products</a>
+    </div>
+</div>

@@ -1,0 +1,48 @@
+﻿@model Product
+
+
+@{
+    ViewData["Title"] = "Edit";
+   
+}
+<h1>Edit</h1>
+
+
+<form method="post" enctype="multipart/form-data" asp-action="edit" asp-controller="product" asp-route-Id="@Model?.Id">
+    <partial name="_FormPartial" model="Model" view-data="ViewData" />
+
+    <div class="mb-3">
+        <label class="form-label">Image</label>
+        <div class="custom-file">
+            @{
+                string? imgsrc = null;
+                if (@Model.Image != null)
+                {
+                    string base64String = Convert.ToBase64String(@Model?.Image);
+                    imgsrc = $"data:image/jpeg;base64,{base64String}";
+                    <img src="@imgsrc" height="400" width="200" class="border p-3">
+                }
+                else
+                {
+                    <img class="border p-3" width="300" height="400" src="/Images/images.png">
+                }
+            }
+            <label class="custom-file-label" for="customFile">Choose Image</label>
+            <input type="file" name="Imagefile" class="custom-file-input"/>
+
+        </div>
+    </div>
+
+
+    <br />
+    <button type="submit" class="btn btn-outline-primary">Submit</button>
+   
+    <a asp-action="ManageProduct" asp-controller="User" asp-route-Id="@ViewBag.Id" class="btn btn-success w-20">Back To My Products</a>
+    
+</form>
+@section scripts{
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
